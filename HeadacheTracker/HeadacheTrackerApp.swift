@@ -12,6 +12,7 @@ struct HeadacheTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.locale, Locale(identifier: "ru_RU"))
         }
     }
 }
