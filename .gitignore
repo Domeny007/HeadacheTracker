@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Xcode — пользовательское состояние
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Сборка
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# SwiftPM
+.build/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+
+# Если появятся
+Pods/
+Carthage/Build/
