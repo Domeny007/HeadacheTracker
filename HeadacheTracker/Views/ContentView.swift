@@ -20,6 +20,14 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Трекер головной боли")
+            .toolbar {
+                NavigationLink(
+                    destination: CreateHeadacheView(store: store),
+                    label: {
+                        Image(systemName: "plus")
+                    }
+                )
+            }
         }
     }
 }
