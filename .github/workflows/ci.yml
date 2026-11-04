@@ -22,4 +22,4 @@ jobs:
           xcodebuild test \
             -project HeadacheTracker.xcodeproj \
             -scheme HeadacheTracker \
-            -destination 'platform=iOS Simulator,name=iPhone 16'
+            -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
