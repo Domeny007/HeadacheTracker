@@ -48,6 +48,14 @@ struct CreateHeadacheView: View {
                             .foregroundStyle(.white)
                             .frame(width: 38, height: 38)
                             .background(intensityColor, in: .circle)
+                            .phaseAnimator(
+                                [1, 1.25, 1],
+                                trigger: intensity
+                            ) { content, scale in
+                                content.scaleEffect(scale)
+                            } animation: { _ in
+                                    .spring(duration: 0.2, bounce: 0.6)
+                            }
                     }
                     
                     Slider(
@@ -56,6 +64,7 @@ struct CreateHeadacheView: View {
                         step: 1
                     )
                     .tint(intensityColor)
+
                     HStack {
                         Text("1 — слабая")
                             .foregroundStyle(.gray)
