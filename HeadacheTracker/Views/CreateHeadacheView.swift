@@ -18,6 +18,7 @@ struct CreateHeadacheView: View {
     @State private var location: PainLocation?
     @State private var character: PainCharacter?
     @State private var note: String = ""
+    @State private var showActiveHeadacheAlert: Bool = false
     
     let store: HeadacheStore
     
@@ -105,6 +106,17 @@ struct CreateHeadacheView: View {
                 saveAndDismiss()
             }
             .disabled(!checkButtonIsEnabled())
+            .alert("У вас есть активная головная боль", isPresented: $showActiveHeadacheAlert) {
+                Button("Завершить", role: .destructive) {
+                    guard let entry = makeHeadacheEntry() else { return }
+                    
+                    store.addAndCloseActive(entry)
+                    dismiss()
+                }
+                Button("Оставить", role: .cancel, action: { })
+            } message: {
+                Text("При завершении будет создана новая запись")
+            }
         }
     }
     
@@ -120,16 +132,40 @@ struct CreateHeadacheView: View {
     }
     
     private func saveAndDismiss() {
+        guard let entry = makeHeadacheEntry() else { return }
+        
+        do {
+            try store.add(entry)
+            dismiss()
+        }
+        catch {
+            guard let error = error as? HeadacheStoreError else {
+                dismiss()
+                return
+            }
+            
+            switch error {
+            case .haveActiveHeadache:
+                showActiveHeadacheAlert = true
+            }
+        }
+    }
+    
+    private func checkButtonIsEnabled() -> Bool {
+        return location != nil && character != nil
+    }
+    
+    private func makeHeadacheEntry() -> HeadacheEntry? {
         guard let location,
               let character
-        else { return }
+        else { return nil }
         
         var endedAt: Date? = endedAt
         if stillGoing {
             endedAt = nil
         }
         
-        let entry = HeadacheEntry(
+        return HeadacheEntry(
             startedAt: startedAt,
             endedAt: endedAt,
             intensity: Int(intensity),
@@ -137,17 +173,11 @@ struct CreateHeadacheView: View {
             character: character,
             note: note
         )
-        store.entries.append(entry)
-        dismiss()
-    }
-    
-    private func checkButtonIsEnabled() -> Bool {
-        return location != nil && character != nil
     }
 }
 
 #Preview {
     NavigationStack {
-        CreateHeadacheView(store: HeadacheStore())
+        CreateHeadacheView(store: HeadacheStore(entries: HeadacheStore.samples))
     }
 }

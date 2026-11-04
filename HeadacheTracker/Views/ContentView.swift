@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var store = HeadacheStore()
+    @State private var store = HeadacheStore(entries: HeadacheStore.samples)
     
     var body: some View {
         NavigationStack {

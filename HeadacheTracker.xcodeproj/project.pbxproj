@@ -6,11 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		763FCE08309B57DC0091EEF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7655DC1C30762AE6003F1B74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7655DC2330762AE6003F1B74;
+			remoteInfo = HeadacheTracker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		763FCE04309B57DC0091EEF7 /* HeadacheTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadacheTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7655DC2430762AE6003F1B74 /* HeadacheTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadacheTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		763FCE05309B57DC0091EEF7 /* HeadacheTrackerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HeadacheTrackerTests;
+			sourceTree = "<group>";
+		};
 		7655DC2630762AE6003F1B74 /* HeadacheTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HeadacheTracker;
@@ -19,6 +35,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		763FCE01309B57DC0091EEF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7655DC2130762AE6003F1B74 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				7655DC2630762AE6003F1B74 /* HeadacheTracker */,
+				763FCE05309B57DC0091EEF7 /* HeadacheTrackerTests */,
 				7655DC2530762AE6003F1B74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				7655DC2430762AE6003F1B74 /* HeadacheTracker.app */,
+				763FCE04309B57DC0091EEF7 /* HeadacheTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +73,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		763FCE03309B57DC0091EEF7 /* HeadacheTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 763FCE0A309B57DC0091EEF7 /* Build configuration list for PBXNativeTarget "HeadacheTrackerTests" */;
+			buildPhases = (
+				763FCE00309B57DC0091EEF7 /* Sources */,
+				763FCE01309B57DC0091EEF7 /* Frameworks */,
+				763FCE02309B57DC0091EEF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				763FCE09309B57DC0091EEF7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				763FCE05309B57DC0091EEF7 /* HeadacheTrackerTests */,
+			);
+			name = HeadacheTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = HeadacheTrackerTests;
+			productReference = 763FCE04309B57DC0091EEF7 /* HeadacheTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7655DC2330762AE6003F1B74 /* HeadacheTracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7655DC2F30762AE7003F1B74 /* Build configuration list for PBXNativeTarget "HeadacheTracker" */;
@@ -80,6 +128,10 @@
 				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
+					763FCE03309B57DC0091EEF7 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 7655DC2330762AE6003F1B74;
+					};
 					7655DC2330762AE6003F1B74 = {
 						CreatedOnToolsVersion = 26.5;
 					};
@@ -100,11 +152,19 @@
 			projectRoot = "";
 			targets = (
 				7655DC2330762AE6003F1B74 /* HeadacheTracker */,
+				763FCE03309B57DC0091EEF7 /* HeadacheTrackerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		763FCE02309B57DC0091EEF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7655DC2230762AE6003F1B74 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +175,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		763FCE00309B57DC0091EEF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7655DC2030762AE6003F1B74 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +191,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		763FCE09309B57DC0091EEF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7655DC2330762AE6003F1B74 /* HeadacheTracker */;
+			targetProxy = 763FCE08309B57DC0091EEF7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		763FCE0B309B57DC0091EEF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U76UU38W98;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alekbaev.HeadacheTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeadacheTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HeadacheTracker";
+			};
+			name = Debug;
+		};
+		763FCE0C309B57DC0091EEF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U76UU38W98;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alekbaev.HeadacheTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeadacheTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HeadacheTracker";
+			};
+			name = Release;
+		};
 		7655DC2D30762AE7003F1B74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -261,6 +380,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -293,6 +413,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,6 +434,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		763FCE0A309B57DC0091EEF7 /* Build configuration list for PBXNativeTarget "HeadacheTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				763FCE0B309B57DC0091EEF7 /* Debug */,
+				763FCE0C309B57DC0091EEF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7655DC1F30762AE6003F1B74 /* Build configuration list for PBXProject "HeadacheTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
