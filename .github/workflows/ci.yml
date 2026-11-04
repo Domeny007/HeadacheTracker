@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -project HeadacheTracker.xcodeproj \
+            -scheme HeadacheTracker \
+            -destination 'generic/platform=iOS Simulator'
