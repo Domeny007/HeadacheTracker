@@ -8,7 +8,7 @@
 
 ## Скриншоты
 
-<img src="screenshots/main.png" width="250"> <img src="screenshots/add.pnd" width="250">
+<img src="screenshots/main.png" width="250"> <img src="screenshots/add.png" width="250">
 
 ## Стек
 
