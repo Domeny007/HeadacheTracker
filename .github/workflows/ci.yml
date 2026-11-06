@@ -14,6 +14,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Resolve packages
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project HeadacheTracker.xcodeproj \
+            -scheme HeadacheTracker \
+            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages"
+
+      - name: SwiftLint
+        run: |
+          SWIFTLINT_DIR="$RUNNER_TEMP/SourcePackages/artifacts/swiftlintplugins/SwiftLintBinary"
+          "$SWIFTLINT_DIR/SwiftLintBinary.artifactbundle/macos/swiftlint" lint \
+            --config .swiftlint.yml \
+            --reporter github-actions-logging
+
       - name: Available simulators
         run: xcrun simctl list devices available
 
@@ -22,4 +36,6 @@ jobs:
           xcodebuild test \
             -project HeadacheTracker.xcodeproj \
             -scheme HeadacheTracker \
+            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages" \
+            -skipPackagePluginValidation \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro'

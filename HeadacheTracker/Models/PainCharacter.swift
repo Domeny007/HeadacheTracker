@@ -8,11 +8,11 @@
 import Foundation
 
 enum PainCharacter: CaseIterable {
-    
+
     case pressing
     case bursting
     case throbbing
-    
+
     var title: String {
         switch self {
         case .pressing:  "Давящая"

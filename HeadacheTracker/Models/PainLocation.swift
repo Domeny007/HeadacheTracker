@@ -8,14 +8,14 @@
 import Foundation
 
 enum PainLocation: CaseIterable {
-    
+
     case back
     case forehead
     case temple
     case crownOfTheHead
     case wholeHead
     case half
-    
+
     var title: String {
         switch self {
         case .back:
