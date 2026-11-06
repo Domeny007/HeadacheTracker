@@ -8,14 +8,14 @@
 
 ## Скриншоты
 
-<img src="screenshots/main.png" width="250">
+<img src="screenshots/main.png" width="250"> <img src="screenshots/add.pnd" width="250">
 
 ## Стек
 
-- SwiftUI, iOS 26.5
-- `@Observable` для состояния, без `ObservableObject`
+- SwiftUI, iOS 17.0+
 - Данные живут в памяти — персистентность следующим этапом
-- CI: GitHub Actions, сборка на каждый pull request
+- Тесты: Swift Testing
+- CI: GitHub Actions, `xcodebuild test` на pull request и push в `main`
 
 ## Дальше
 

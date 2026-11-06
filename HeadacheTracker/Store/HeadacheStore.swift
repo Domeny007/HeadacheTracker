@@ -9,24 +9,24 @@ import SwiftUI
 
 @Observable
 final class HeadacheStore {
-    
+
     private(set) var entries: [HeadacheEntry]
-    
+
     init(entries: [HeadacheEntry]) {
         self.entries = entries
     }
-    
+
     func add(_ entry: HeadacheEntry) throws {
         guard !entries.contains(where: { $0.isActive }) else { throw HeadacheStoreError.haveActiveHeadache }
-        
+
         entries.append(entry)
     }
-    
+
     func addAndCloseActive(_ entry: HeadacheEntry) {
         if let index = entries.firstIndex(where: { $0.isActive }) {
             entries[index].endedAt = .now
         }
-        
+
         entries.append(entry)
     }
 }
@@ -34,7 +34,7 @@ final class HeadacheStore {
 // MARK: - Демо дата, удалить потом
 
 extension HeadacheStore {
-    
+
     static let samples: [HeadacheEntry] = [
         // идёт прямо сейчас
             HeadacheEntry(

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HeadacheRow: View {
-    
+
     let entry: HeadacheEntry
-    
+
     var body: some View {
         HStack(alignment: .center) {
             Text("\(entry.intensity)")
@@ -18,15 +18,15 @@ struct HeadacheRow: View {
                 .foregroundStyle(.white)
                 .frame(width: 38, height: 38)
                 .background(intensityColor, in: .circle)
-            
+
             VStack(alignment: .leading) {
-                
+
                 Text(entry.character.title)
                     .font(.headline)
-                
+
                 Text(entry.location.title)
                     .font(.subheadline)
-                
+
                 if !entry.note.isEmpty {
                     Text(entry.note)
                         .font(.caption)
@@ -34,9 +34,9 @@ struct HeadacheRow: View {
                         .lineLimit(1)
                 }
             }
-            
+
             Spacer()
-            
+
             VStack(alignment: .trailing, spacing: 4) {
                 Text(
                     entry.startedAt,
@@ -44,7 +44,7 @@ struct HeadacheRow: View {
                         .day()
                         .month(.abbreviated)
                 )
-                
+
                 if entry.isActive {
                     Text("идёт")
                         .font(.caption2.bold())
@@ -59,7 +59,7 @@ struct HeadacheRow: View {
             }
         }
     }
-    
+
     private var intensityColor: Color {
         switch entry.intensity {
         case ...3:  .green
@@ -67,7 +67,7 @@ struct HeadacheRow: View {
         default:    .red
         }
     }
-    
+
     private func durationText(_ seconds: TimeInterval) -> String {
         let hours = Int(seconds) / 3600
         let minutes = (Int(seconds) % 3600) / 60

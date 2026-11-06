@@ -1,0 +1,3 @@
+vertical_whitespace:
+  max_empty_lines: 1
+  severity: warning

@@ -8,7 +8,7 @@
 import Foundation
 
 struct HeadacheEntry: Identifiable {
-    
+
     let id: UUID
     var startedAt: Date
     var endedAt: Date?
@@ -16,10 +16,10 @@ struct HeadacheEntry: Identifiable {
     var location: PainLocation
     var character: PainCharacter
     var note: String
-    
+
     var duration: TimeInterval? { endedAt?.timeIntervalSince(startedAt) }
     var isActive: Bool { endedAt == nil }
-    
+
     init(
         id: UUID = UUID(),
         startedAt: Date,
