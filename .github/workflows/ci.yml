@@ -47,6 +47,13 @@ jobs:
 
       - *resolve_packages
 
+      - name: Show test environment
+        run: |
+          xcodebuild -version
+          xcode-select -p
+          xcrun simctl list runtimes
+          xcrun simctl list devices available
+
       - name: Unit Tests
         run: |
             xcodebuild test \
