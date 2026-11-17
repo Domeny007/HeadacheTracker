@@ -41,6 +41,17 @@
                ReferencedContainer = "container:HeadacheTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "766F9D1030AC6A6A00FF6DA2"
+               BuildableName = "HeadacheTrackerUITests.xctest"
+               BlueprintName = "HeadacheTrackerUITests"
+               ReferencedContainer = "container:HeadacheTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
