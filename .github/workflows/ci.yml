@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+
 jobs:
   swiftlint:
     runs-on: macos-latest
@@ -22,8 +25,7 @@ jobs:
           path: ${{ runner.temp }}/SourcePackages
           key: ${{ runner.os }}-${{ runner.arch }}-spm-v1-${{ hashFiles('**/Package.resolved') }}
 
-      - &resolve_packages
-        name: Resolve packages
+      - name: Resolve packages
         run: |
           xcodebuild -resolvePackageDependencies \
             -project HeadacheTracker.xcodeproj \
@@ -36,6 +38,7 @@ jobs:
           "$SWIFTLINT_DIR/SwiftLintBinary.artifactbundle/macos/swiftlint" lint \
             --config .swiftlint.yml \
             --reporter github-actions-logging
+
   unit_tests:
     runs-on: macos-latest
     needs: swiftlint
@@ -45,42 +48,63 @@ jobs:
 
       - *cache_spm
 
-      - *resolve_packages
-
-      - name: Show test environment
+      - name: Build for testing
         run: |
-          xcodebuild -version
-          xcode-select -p
-          xcrun simctl list runtimes
-          xcrun simctl list devices available
+            xcodebuild build-for-testing \
+            -project HeadacheTracker.xcodeproj \
+            -scheme HeadacheTracker \
+            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages" \
+            -skipPackagePluginValidation \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
 
       - name: Unit Tests
         run: |
-            xcodebuild test \
+            xcodebuild test-without-building \
             -project HeadacheTracker.xcodeproj \
             -scheme HeadacheTracker \
             -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages" \
             -skipPackagePluginValidation \
             -only-testing:HeadacheTrackerTests \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+
+      - name: Package test products
+        run: |
+            tar -czf "$RUNNER_TEMP/test-products.tar.gz" \
+            -C "$RUNNER_TEMP/DerivedData/Build" \
+            Products
+
+      - name: Upload test products
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-products
+          path: ${{ runner.temp }}/test-products.tar.gz
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+
   ui_tests:
     runs-on: macos-latest
     needs: unit_tests
 
     steps:
-      - *checkout
+      - name: Download test products
+        uses: actions/download-artifact@v8
+        with:
+          name: test-products
+          path: ${{ runner.temp }}
 
-      - *cache_spm
-
-      - *resolve_packages
+      - name: Unpack test products
+        run: |
+            mkdir -p "$RUNNER_TEMP/DerivedData/Build"
+            tar -xzf "$RUNNER_TEMP/test-products.tar.gz" \
+            -C "$RUNNER_TEMP/DerivedData/Build"
 
       - name: UI Tests
         run: |
-            xcodebuild test \
-            -project HeadacheTracker.xcodeproj \
-            -scheme HeadacheTracker \
-            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages" \
-            -skipPackagePluginValidation \
+            xcodebuild test-without-building \
+            -xctestrun "$RUNNER_TEMP/DerivedData/Build/Products/"*.xctestrun \
             -parallel-testing-enabled NO \
             -only-testing:HeadacheTrackerUITests \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
