@@ -74,5 +74,6 @@ jobs:
             -scheme HeadacheTracker \
             -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages" \
             -skipPackagePluginValidation \
+            -parallel-testing-enabled NO \
             -only-testing:HeadacheTrackerUITests \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
