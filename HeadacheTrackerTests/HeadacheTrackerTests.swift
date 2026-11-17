@@ -11,32 +11,31 @@ import Foundation
 @testable import HeadacheTracker
 
 struct HeadacheTrackerTests {
-    
+
     @Test func activeEpisodeExist() {
         let store = makeStoreWithActiveEpisode()
-        
+
         #expect(store.entries.count == 3)
-        
+
         #expect(throws: HeadacheStoreError.haveActiveHeadache) {
             try store.add(makeActiveHeadache())
         }
-        
+
         #expect(store.entries.count == 3)
     }
-    
+
     @Test func activeEpisodeNotExist() throws {
         let store = makeStoreWithoutActiveEpisode()
-        
+
         let headache = makeActiveHeadache()
-        
+
         #expect(store.entries.count == 3)
-        
+
         try store.add(headache)
-        
+
         #expect(store.entries.count == 4)
     }
 }
-
 
 private func makeActiveHeadache() -> HeadacheEntry {
     HeadacheEntry(

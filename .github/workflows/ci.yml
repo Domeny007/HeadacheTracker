@@ -11,10 +11,19 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - &checkout
+        name: Checkout
+        uses: actions/checkout@v7
 
-      - name: Resolve packages
+      - &cache_spm
+        name: Cache SPM
+        uses: actions/cache@v6
+        with:
+          path: ${{ runner.temp }}/SourcePackages
+          key: ${{ runner.os }}-${{ runner.arch }}-spm-v1-${{ hashFiles('**/Package.resolved') }}
+
+      - &resolve_packages
+        name: Resolve packages
         run: |
           xcodebuild -resolvePackageDependencies \
             -project HeadacheTracker.xcodeproj \
@@ -32,15 +41,11 @@ jobs:
     needs: swiftlint
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - *checkout
 
-      - name: Resolve packages
-        run: |
-            xcodebuild -resolvePackageDependencies \
-            -project HeadacheTracker.xcodeproj \
-            -scheme HeadacheTracker \
-            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages"
+      - *cache_spm
+
+      - *resolve_packages
 
       - name: Unit Tests
         run: |
@@ -56,15 +61,11 @@ jobs:
     needs: unit_tests
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - *checkout
 
-      - name: Resolve packages
-        run: |
-            xcodebuild -resolvePackageDependencies \
-            -project HeadacheTracker.xcodeproj \
-            -scheme HeadacheTracker \
-            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages"
+      - *cache_spm
+
+      - *resolve_packages
 
       - name: UI Tests
         run: |
