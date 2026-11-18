@@ -15,7 +15,6 @@ platform :ios do
       test_without_building: true,
       only_testing: ["HeadacheTrackerTests"],
       xcodebuild_formatter: "",
-      output_types: "junit",
       output_directory: "build/reports/unit"
     )
   end
@@ -41,8 +40,7 @@ platform :ios do
       skip_package_dependencies_resolution: true,
       only_testing: ["HeadacheTrackerUITests"],
       output_directory: "build/reports/ui",
-      parallel_testing: false,
-      deployment_target_version: "17.0"
+      parallel_testing: false
     )
   end
 end

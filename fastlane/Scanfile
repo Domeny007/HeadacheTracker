@@ -1,6 +1,7 @@
 project("HeadacheTracker.xcodeproj")
 scheme("HeadacheTracker")
 device("iPhone 17 Pro")
+app_name("HeadacheTracker")
 
 build_root = ENV.fetch("RUNNER_TEMP", "build")
 derived_data_path("#{build_root}/DerivedData")
@@ -10,3 +11,5 @@ if ENV["RUNNER_TEMP"]
 end
 
 xcargs("-skipPackagePluginValidation")
+deployment_target_version("17.0")
+output_types("junit")
