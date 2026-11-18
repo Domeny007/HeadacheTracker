@@ -14,6 +14,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
+
       - &checkout
         name: Checkout
         uses: actions/checkout@v7
@@ -44,30 +45,23 @@ jobs:
     needs: swiftlint
 
     steps:
+
       - *checkout
+
+      - &setup_ruby
+        name: Setup Ruby and fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          rubygems: '4.1.0'
+          bundler-cache: true
 
       - *cache_spm
 
       - name: Build for testing
-        run: |
-            xcodebuild build-for-testing \
-            -project HeadacheTracker.xcodeproj \
-            -scheme HeadacheTracker \
-            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages" \
-            -skipPackagePluginValidation \
-            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-            -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+        run: bundle exec fastlane build_for_tests
 
       - name: Unit Tests
-        run: |
-            xcodebuild test-without-building \
-            -project HeadacheTracker.xcodeproj \
-            -scheme HeadacheTracker \
-            -clonedSourcePackagesDirPath "$RUNNER_TEMP/SourcePackages" \
-            -skipPackagePluginValidation \
-            -only-testing:HeadacheTrackerTests \
-            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-            -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+        run: bundle exec fastlane unit_tests
 
       - name: Package test products
         run: |
@@ -89,6 +83,11 @@ jobs:
     needs: unit_tests
 
     steps:
+
+      - *checkout
+      - *setup_ruby
+
+
       - name: Download test products
         uses: actions/download-artifact@v8
         with:
@@ -102,9 +101,4 @@ jobs:
             -C "$RUNNER_TEMP/DerivedData/Build"
 
       - name: UI Tests
-        run: |
-            xcodebuild test-without-building \
-            -xctestrun "$RUNNER_TEMP/DerivedData/Build/Products/"*.xctestrun \
-            -parallel-testing-enabled NO \
-            -only-testing:HeadacheTrackerUITests \
-            -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+        run: bundle exec fastlane ui_tests

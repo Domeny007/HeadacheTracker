@@ -1,0 +1,12 @@
+project("HeadacheTracker.xcodeproj")
+scheme("HeadacheTracker")
+device("iPhone 17 Pro")
+
+build_root = ENV.fetch("RUNNER_TEMP", "build")
+derived_data_path("#{build_root}/DerivedData")
+
+if ENV["RUNNER_TEMP"]
+  cloned_source_packages_path("#{build_root}/SourcePackages")
+end
+
+xcargs("-skipPackagePluginValidation")
