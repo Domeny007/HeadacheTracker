@@ -14,7 +14,7 @@
 
 - SwiftUI, iOS 17.0+
 - Данные живут в памяти — персистентность следующим этапом
-- Тесты: Swift Testing
+- Тесты: Swift Testing, XCUITests
 - CI: GitHub Actions, `xcodebuild test` на pull request и push в `main`
 
 ## Дальше
